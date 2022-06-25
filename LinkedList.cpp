@@ -225,7 +225,24 @@ void DisplayCircular(node* &head){
 
 }
 
+node* kappend(node* &head, int k){
+node* tail=head;
+int i=1;
+while(tail!=NULL &&tail->next!=NULL){
+    tail=tail->next;
+    i++;
+}
+node* newhead=head;
+node* newtail=NULL;
+for(int j=1; j<=i-k; j++){
+    newtail=newhead;
+    newhead=newhead->next;
+}
+tail->next=head;
+newtail->next=NULL;
 
+return newhead;
+}
 
 int main(){
 
@@ -256,7 +273,7 @@ int main(){
 
     node* head=merge2LL(head1, head2);
     display(head);
-    node* reversekhead= reversek(head,5);
+ /* node* reversekhead= reversek(head,5);
     display(reversekhead);
     node* t1=head;
     while(t1->next!=NULL){
@@ -268,6 +285,10 @@ int main(){
     cout<<isCycle(head)<<endl;
     removeCycle(head);
     cout<<isCycle(head)<<endl;
+*/
 
+node* newhead;
+newhead= kappend(head,3);
+display(newhead);
 return 0;
 }
